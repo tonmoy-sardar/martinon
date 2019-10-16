@@ -1,0 +1,95 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>cart</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="cart-page">
+        <ion-title class="headline">Cart</ion-title>
+        <hr>
+        <ion-grid *ngIf="customer_cart_data.length > 0">
+            <ion-row *ngFor="let item of customer_cart_data; let i = index">
+                <ion-col col-4>
+                    <div (click)="gotoProDetails(item.product_id)" class="product-image">
+
+                        <img [src]="item.image_small" />
+                    </div>
+                </ion-col>
+                <ion-col col-8>
+                    <div class="cart-list">
+                        <p>{{item.product_name}}, {{item.size}},{{item.color}}</p>
+                        <span [innerHtml]="item.description"></span>
+
+                        <button class="price-btn cart-price-btn" ion-button>₹ {{item.price}} </button>
+
+                        <div class="cart-quantity" style="padding-left: 5px;">
+                            <button class="quantity-btn" style="margin-left:10%;" type="button" name="button"
+                                (click)="decrement(i)">
+                                <ion-icon name="remove"></ion-icon>
+                            </button>
+                            <span style="width: 20px; text-align: center; display:inline-block;">
+                                {{item.quantity}}</span>
+                            <button class="quantity-btn" type="button" name="button" (click)="increment(i,item)">
+                                <ion-icon name="add"></ion-icon>
+                            </button>
+
+                            <button (click)="remove(item.product_id,i)" class="quantity-btn"
+                                style="float:right; color:red;">
+                                <ion-icon name="trash"></ion-icon>
+                            </button>
+                            <hr>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <hr>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-row>
+                        <ion-col col-8>
+                            <ion-input [(ngModel)]="couponcode" style="border-bottom:1px solid #ccc;"
+                                placeholder='Enter Coupon Code'></ion-input>
+                        </ion-col>
+                        <ion-col col-4> <button ion-button round (click)="applyCode(couponcode)">
+                                Apply
+                            </button></ion-col>
+                        <ion-col col-12>
+                            <p *ngIf="result.status==true && isShowMsg ==1"
+                                style="text-align:left; color:#3b7501 !important">{{this.result.message}}</p>
+                            <p *ngIf="result.status==false && isShowMsg ==1"
+                                style="text-align:left; color:red !important">{{this.result.message}}</p>
+                        </ion-col>
+
+                    </ion-row>
+                </ion-col>
+                <ion-col col-12>
+                    <p>Item Total <i class="fa fa-inr" aria-hidden="true"></i>{{total_item_price}}</p>
+                    <p>Discount <i class="fa fa-inr" aria-hidden="true"></i>{{discountPrice}}</p>
+                    <p>Tax <i class="fa fa-inr" aria-hidden="true"></i>{{taxPrice}}</p>
+                    <p>To Pay <i class="fa fa-inr" aria-hidden="true"></i>{{toPay}}</p>
+
+                </ion-col>
+                <ion-col col-12 class="submit-btn">
+                    <button ion-button color="danger" (click)="checkout()" round>
+                        Checkout
+                        <ion-icon name="arrow-dropright-circle"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <p *ngIf="customer_cart_data.length ==0" class="error-msg">No Records found</p>
+    </div>
+</ion-content>
+<!-- <ion-footer>
+    <page-footer></page-footer>
+</ion-footer> -->

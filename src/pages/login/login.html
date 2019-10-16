@@ -1,0 +1,40 @@
+<ion-content class="gradient-style">
+    <div class="logo">
+        <img src="assets/imgs/logo.png" alt="Ionic logo">
+    </div>
+
+
+        <ion-title>
+            <h3 class="entry-form-title">Login Page</h3>
+        </ion-title>
+        <form [formGroup]="loginForm" novalidate (submit)="signIn()">
+            <ion-grid class="form-body">
+                <ion-row>
+                    <ion-col col-12>
+                        <ion-input type="text" formControlName="email_phone" name="email_phone" [ngClass]="displayFieldCss('email_phone')" placeholder="Email / Mobile Number"></ion-input>
+                        <span class="error-msg" *ngIf="isFieldValid('email_phone')">Please enter a Email / Mobile
+                        Number.</span>
+                    </ion-col>
+                    <ion-col col-12>
+                        <ion-input type="password" formControlName="password" name="password" [ngClass]="displayFieldCss('password')" placeholder="Password"></ion-input>
+                        <span class="error-msg" *ngIf="isFieldValid('password')">Please enter a Password.</span>
+                    </ion-col>
+                </ion-row>
+                <ion-row responsive-sm class="entry-bottom">
+                    <ion-col class="pl-0 pr-0">
+                        <button ion-button color="primary" block>Login</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+        <div class="forgot-password">
+            <p class="text-center not-member" (click)="gotoPage('ForgotPage')"> <span class="creat">Forgot Password</span>
+            </p>
+            <p class="text-center not-member" (click)="gotoPage('SignupPage')">Not a member? <span class="creat">Create your account</span>
+            </p>
+
+            <p class="text-center not-member" (click)="gotoPage('HomePage')"> <span class="creat">Skip</span> </p>
+        </div>
+
+
+</ion-content>

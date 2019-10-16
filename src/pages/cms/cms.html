@@ -1,0 +1,28 @@
+<!--
+  Generated template for the CmsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>cms</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+         {{cmsDetails.page_title}}
+        </ion-card-header>
+        <ion-card-content>
+            <div [innerHtml]="cmsDetails.page_content">
+              
+            </div>
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>

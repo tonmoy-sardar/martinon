@@ -1,0 +1,109 @@
+<!--
+  Generated template for the ForgotPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+    <ion-navbar>
+        <ion-title>forgot</ion-title>
+    </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content class="gradient-style">
+
+    <div class="logo">
+        <img src="assets/imgs/logo.png" alt="Ionic logo">
+    </div>
+    <!-- <ion-card class="entry-form-body"> -->
+        <div *ngIf="isShow==0">
+            <ion-title>
+                <h3 class="entry-form-title">It's not a big deal</h3>
+            </ion-title>
+
+            <div class="forgot-password">
+                <p class="forgot-desc text-center">Please follow the steps below and we will send you a new password</p>
+            </div>
+            <form [formGroup]="forgotForm" class="entry-form">
+                <ion-grid class="form-body">
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-input type="text" formControlName="phone" name="phone" [(ngModel)]="data.phone" placeholder="Mobile Number" [ngClass]="displayFieldCss(forgotForm,'phone')"></ion-input>
+                            <span class="error-msg" *ngIf="isFieldValid(forgotForm,'phone')">Please enter Mobile
+              Number.</span>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row responsive-sm class="entry-bottom">
+                        <ion-col class="pl-0 pr-0">
+                            <button ion-button color="primary" block (click)="resetPassword(data)">Submit</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
+            <div class="forgot-password">
+                <p class="text-center not-member" (click)="gotoSignin()">Existing User? <span class="creat">Login</span> </p>
+            </div>
+        </div>
+    <!-- </ion-card> -->
+    <!-- <ion-card class="entry-form-body"> -->
+
+        <div class="entry-form-body" *ngIf="isShow==1">
+            <ion-title>
+                <h3 class="entry-form-title">It's done</h3>
+            </ion-title>
+            <p class="forgot-desc">Your new password has been sent to your mobile number ending with {{getResult.contact}} and email id {{getResult.email}}</p>
+            <form [formGroup]="otpForm" class="entry-form">
+                <ion-grid class="form-body">
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-input type="password" formControlName="otp" [ngClass]="displayFieldCss(otpForm,'otp')" name="otp" [(ngModel)]="data.otp" placeholder="OTP"></ion-input>
+                            <span class="error-msg" *ngIf="isFieldValid(otpForm,'otp')">Please enter OTP.</span>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row responsive-sm class="entry-bottom">
+                        <ion-col class="pl-0 pr-0">
+                            <button ion-button color="primary" block (click)="matchOtp(data)">Submit</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
+            <div class="forgot-password">
+                <p class="text-center not-member" (click)="gotoSignin()">Existing User? <span class="creat">Login</span> </p>
+            </div>
+        </div>
+    <!-- </ion-card> -->
+    <!-- <ion-card class="entry-form-body"> -->
+        <div class="entry-form-body" *ngIf="isShow==2">
+            <ion-title>
+                <h3 class="entry-form-title">It's done</h3>
+            </ion-title>
+            <p class="forgot-desc">Enter your new password</p>
+            <form [formGroup]="newPasswordForm" class="entry-form">
+                <ion-grid class="form-body">
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-input type="password" formControlName="password" [ngClass]="displayFieldCss(newPasswordForm,'password')" name="password" [(ngModel)]="data.password" placeholder="New Password"></ion-input>
+                            <span class="error-msg" *ngIf="isFieldValid(newPasswordForm,'password')">Please enter New Password.</span>
+                        </ion-col>
+                        <ion-col col-12>
+                            <ion-input type="password" formControlName="conf_password" [ngClass]="displayFieldCss(newPasswordForm,'conf_password')" name="conf_password" [(ngModel)]="data.conf_password" placeholder="Confirm Password">
+                            </ion-input>
+                            <span class="error-msg" *ngIf="isFieldValid(newPasswordForm,'conf_password')">Please enter Confirm Password.</span>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row responsive-sm class="entry-bottom">
+                        <ion-col class="pl-0 pr-0">
+                            <button ion-button color="primary" block (click)="updatePassword(data)">Reset</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
+            <div class="forgot-password">
+                <p class="text-center not-member" (click)="gotoSignin()">Existing User? <span class="creat">Login</span> </p>
+            </div>
+        </div>
+    <!-- </ion-card> -->
+</ion-content>

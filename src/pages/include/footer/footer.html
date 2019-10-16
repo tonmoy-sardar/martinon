@@ -1,0 +1,28 @@
+<ion-footer>
+  <ion-toolbar>
+
+    <button class="active" (click)="gotoPage('HomePage')">
+      <ion-icon name="home"></ion-icon>
+      <i class="fa fa-home" aria-hidden="true"></i>
+      <span>Home</span>
+    </button>
+    <button (click)="gotoSearchPage()">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </button>
+    <button (click)="gotoPage('CartPage')">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      <span>Cart</span>
+    </button>
+    <button (click)="gotoPage('ProfilePage')">
+      <i class="fa fa-user-o" aria-hidden="true"></i>
+      <span>My Account</span>
+    </button>
+<!-- 
+    <button>
+      <i class="fa fa-bars" aria-hidden="true"></i>
+      <span>More</span>
+    </button> -->
+
+  </ion-toolbar>
+</ion-footer>

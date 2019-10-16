@@ -1,0 +1,75 @@
+<!--
+  Generated template for the OrdersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Orders</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content fullscreen>
+  <div class="order-list-body">
+    <ion-card *ngFor="let item of order_list let i=index">
+      <ion-card-content (click)="gotoOrderDetails(item.id)">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-12>
+              <ion-list no-lines class="recipe-name">Order No : {{item.order_key}}</ion-list>
+            </ion-col>
+            <ion-col col-12>
+              <ion-list no-lines class="recipe-name">Date : {{item.date_created
+                | date:'dd-MM-yyyy h:mm:ss a'}}</ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row style="background-color:#ec8686">
+            <ion-col col-4 style="text-align: center; border-right: 1px solid #ffffff; ">
+              <ion-list no-lines class="recipe-name">Payment Status</ion-list>
+            </ion-col>
+            <ion-col col-4 style="text-align: center;border-right: 1px solid #ffffff;">
+              <ion-list no-lines class="recipe-name">Payment Mode</ion-list>
+            </ion-col>
+            <ion-col col-4 style="text-align: center;">
+              <ion-list no-lines class="recipe-name">Grand Total</ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col col-4 style="text-align: center;">
+              <ion-list no-lines class="recipe-name">
+                <p *ngIf="item.status=='on-hold'">Pending</p>
+                <p *ngIf="item.status=='completed'">Paid</p>
+               
+              </ion-list>
+            </ion-col>
+            <ion-col col-4 style="text-align: center;">
+              <ion-list no-lines class="recipe-name">
+             
+                <p *ngIf="item.payment_method=='cod'">COD</p>
+              </ion-list>
+            </ion-col>
+            <ion-col col-4 style="text-align: center;">
+              <ion-list no-lines class="recipe-name">
+                <p><i class="fa fa-rupee"></i>{{item.total}}</p>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <!-- <ion-row (click)="repeatOrder(order)">
+            <ion-col col-12>
+              <hr>
+              <p class="order-placed"><i class="fa fa-repeat" aria-hidden="true"></i>Repeat Order</p>
+            </ion-col>
+          </ion-row> -->
+        </ion-grid>
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+
+  <!-- <ion-infinite-scroll *ngIf="orderListNext !='null'" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>

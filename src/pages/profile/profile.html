@@ -1,0 +1,181 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="profile-page">
+  <ion-grid class="icon-list">
+    <ion-row>
+      <ion-col col-3 (click)="gotoProductList('ProductlistPage')">
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/product-icon.png">
+        </div>
+
+        <ion-label class="icon-title">Product List</ion-label>
+      </ion-col>
+      <ion-col col-3 (click)="gotoSearchPage()">
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/search-icon.png">
+        </div>
+        <ion-label class="icon-title">Search</ion-label>
+      </ion-col>
+      <ion-col col-3 (click)="gotoProductList('OrdersPage')">
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/orders-icon.png">
+        </div>
+        <ion-label class="icon-title">Orders</ion-label>
+      </ion-col>
+     
+      <ion-col col-3 (click)="gotoPage('ProfileviewPage')">
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/profile-icon.png">
+        </div>
+        <ion-label class="icon-title">My Profile</ion-label>
+      </ion-col>
+
+      <ion-col col-3 (click)="gotoPage('ProfileeditPage')">
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/edit-icon.png">
+        </div>
+        <ion-label class="icon-title">Edit Profile</ion-label>
+      </ion-col>
+
+      <ion-col col-3 (click)="gotoPage('LegalPage')">
+          <div class="icon-div">
+            <img class="icon-img" src="assets/imgs/legal-icon.png">
+          </div>
+          <ion-label class="icon-title">Legal</ion-label>
+        </ion-col>
+
+      <!-- <ion-col col-3>
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/terms-icon.png">
+        </div>
+        <ion-label class="icon-title">Terms & Condition</ion-label>
+      </ion-col>
+      <ion-col col-3>
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/privacy-icon.png">
+        </div>
+        <ion-label class="icon-title">Privacy Policy</ion-label>
+      </ion-col> -->
+      <!-- <ion-col col-3>
+        <div class="icon-div">
+          <img class="icon-img" src="assets/imgs/contact-icon.png">
+        </div>
+        <ion-label class="icon-title">Contact Us</ion-label>
+      </ion-col> -->
+      
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="assets/imgs/no-image.png">
+          </ion-avatar>
+          <h2 class="avatar-title">{{logged_first_name}} {{logged_last_name}}</h2>
+          <p>{{logged_user_email}}</p>
+          <!-- <button ion-button color="light" *ngIf="isLoggedin ==true" round (click)="gotoPage('ProfileeditPage')">EDIT
+            PROFILE</button>
+          <button ion-button color="light" *ngIf="isLoggedin ==true" round (click)="gotoPage('ProfileviewPage')">View
+            PROFILE</button>
+          <button ion-button color="light" *ngIf="isLoggedin !=true" round (click)="gotoPage('LoginPage')">EDIT
+            PROFILE</button>
+          <button ion-button color="light" *ngIf="isLoggedin !=true" round (click)="gotoPage('LoginPage')">View
+            PROFILE</button> -->
+            <button ion-button color="light" (click)="logOut()">Logout</button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-card> -->
+      <!-- <ion-list >
+        <button ion-item (click)="gotoPage('OrdersPage')">
+          <i class="fa fa-list-ul" aria-hidden="true"></i>
+          <span> All My Orders</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i>
+        </button>
+
+      </ion-list> -->
+      <!-- <ion-list>
+        <button ion-item (click)="gotoPage('ShipmentPage')">
+          <ion-icon ios="ios-bulb-outline" md="md-bulb"></ion-icon>
+          <span>Pending Shipments</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i>
+        </button>
+      </ion-list>
+    </ion-card>
+    <ion-card>
+      <ion-list>
+        <button ion-item (click)="gotoPage('DeliveryPage')">
+          <i class="fa fa-list-ul" aria-hidden="true"></i>
+          <span>Update Delivery</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i></button>
+      </ion-list> -->
+      <!-- <ion-list>
+        <button ion-item (click)="gotoPage('SupportPage')">
+          <i class="fa fa-headphones" aria-hidden="true"></i>
+          <span> Customer Support</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i></button>
+      </ion-list>
+      <ion-list>
+        <button ion-item (click)="gotoPage('RateappPage')">
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+          <span> Rate Our App</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i></button>
+      </ion-list> -->
+      <!-- <ion-list>
+        <button ion-item (click)="gotoPage('ChangepasswordPage')">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <span> Change Password</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i></button>
+      </ion-list> -->
+      <!-- <ion-list>
+        <button ion-item (click)="gotoProductList('ProductlistPage')">
+          <ion-icon name="apps"></ion-icon>
+          <span> Product List</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i></button>
+      </ion-list> -->
+      <!-- <ion-list>
+        <button ion-item (click)="gotoPage('CartPage')">
+          <ion-icon name="cart"></ion-icon>
+          <span> Cart</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i>
+        </button>
+      </ion-list> -->
+      <!-- <ion-list>
+          <button *ngIf="isLoggedin ==true" ion-item (click)="gotoProductList('ProductlistPage')">
+            <ion-icon ios="ios-document" md="md-document"></ion-icon>
+            <span>Product List</span>
+            <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i></button>
+        </ion-list> -->
+      <!-- <ion-list>
+        <button *ngIf="isLoggedin ==true" ion-item (click)="gotoPage('OrdersPage')">
+          <ion-icon ios="ios-document" md="md-document"></ion-icon>
+          <span> Order</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i>
+        </button>
+      </ion-list> -->
+      <!-- <ion-list>
+        <button ion-item (click)="logOut()">
+          <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+          <span> Logout</span>
+          <i class="fa fa-chevron-circle-right icon-rightside" aria-hidden="true"></i></button>
+      </ion-list> -->
+    <!-- </ion-card> -->
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <page-footer></page-footer>
+</ion-footer>

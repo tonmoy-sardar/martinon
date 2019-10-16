@@ -1,0 +1,109 @@
+<ion-header *ngIf="!isHeaderHidden">
+    <ion-navbar hideBackButton="{{hideBackButton}}">
+        <ion-buttons left>
+            <!-- <button ion-button menuToggle color="light" *ngIf="hideBackButton">
+                <img class="logo-main"src="assets/imgs/logo.png" />
+                <ion-title></ion-title>
+            </button> -->
+            <button ion-button (click)="gotoPage('HomePage')" color="light" *ngIf="hideBackButton">
+                <img class="logo-main"src="assets/imgs/logo.png" />
+                <ion-title></ion-title>
+            </button>
+
+
+        </ion-buttons>
+
+        <ion-icon *ngIf="!hideBackButton" ios="ios-arrow-round-back" md="md-arrow-round-back" (click)="goBack()">
+        </ion-icon>
+
+        <ion-title></ion-title>
+
+        <ion-buttons right>
+            <button ion-button icon-only (click)="gotoSearchPage()">
+                <ion-icon ios="ios-search" md="md-search"></ion-icon>
+            </button>
+            <button *ngIf="isLoggedin !=true" ion-button icon-only (click)="gotoPage('LoginPage')">
+                <ion-icon ios="ios-person-outline" md="md-person"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-buttons (click)="gotoPage('CartPage')" right>
+            <button ion-button icon-only>
+                <ion-icon ios="ios-cart-outline" md="md-cart"></ion-icon>
+
+                <span class='badge badge-warning' id='lblCartCount'> {{totalCart}} </span>
+            </button></ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-menu [content]="mycontent">
+    <ion-content class="menu-nav">
+        <ion-item class="profile-img">
+
+            <img src="assets/imgs/no-image.png" />
+
+            <h2>{{logged_first_name}} {{logged_last_name}}</h2>
+            <span>{{logged_user_email}}</span>
+        </ion-item>
+        <ion-item (click)="gotoPage('HomePage')">
+
+            <ion-icon name="ion-md-home" class="ion-md-home"></ion-icon>
+            Home
+        </ion-item>
+        <ion-item (click)="gotoProductList('ProductlistPage')">
+            <ion-icon name="apps"></ion-icon>
+            Product List
+        </ion-item>
+        <ion-item (click)="gotoProductList('OrdersPage')" *ngIf="isLoggedin ==true">
+            <ion-icon name="albums"></ion-icon>
+            Orders
+        </ion-item>
+        <ion-item (click)="gotoPage('CartPage')">
+            <ion-icon name="cart"></ion-icon>
+            Cart
+        </ion-item>
+        <ion-item (click)="gotoCmsPage('CmsPage',326)" *ngIf="isLoggedin ==true">
+            <ion-icon name="paper"></ion-icon>
+            Help
+        </ion-item>
+        <ion-item (click)="gotoCmsPage('CmsPage',298)">
+            <ion-icon name="information-circle"></ion-icon>
+            About Us
+        </ion-item>
+        <ion-item (click)="gotoPage('ContactPage')">
+            <ion-icon ios="ios-call" md="md-call"></ion-icon>
+            Contact us
+        </ion-item>
+        <ion-item (click)="gotoCmsPage('CmsPage',300)">
+            <ion-icon name="magnet"></ion-icon>
+            Terms & Condition
+        </ion-item>
+        <ion-item (click)="gotoCmsPage('CmsPage',302)">
+            <ion-icon name="pricetag"></ion-icon>
+            Privacy Policy
+        </ion-item>
+        <ion-item (click)="gotoPage('ProfilePage')">
+            <ion-icon ios="ios-person-outline" md="md-person"></ion-icon>
+            My Profile
+        </ion-item>
+        <ion-item (click)="gotoPage('LoginPage')" *ngIf="isLoggedin !=true">
+            <ion-icon ios="ios-log-in" md="md-log-in"></ion-icon>
+            Sign In
+        </ion-item>
+        <ion-item (click)="gotoPage('SignupPage')" *ngIf="isLoggedin !=true">
+            <ion-icon ios="ios-log-in" md="md-log-in"></ion-icon>
+            Sign Up
+        </ion-item>
+        <ion-item (click)="logOut()" *ngIf="isLoggedin ==true">
+            <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+            Logout
+        </ion-item>
+        <ion-item (click)="gotoPage('TestPage')">
+            <ion-icon ios="ios-log-in" md="md-log-in"></ion-icon>
+            Test Page
+        </ion-item>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage" swipeBackEnabled="false"></ion-nav>

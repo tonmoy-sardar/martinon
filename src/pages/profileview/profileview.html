@@ -1,0 +1,78 @@
+<!--
+  Generated template for the ProfileviewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>profileview</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content fullscreen>
+  <div class="profile-banner">
+    <div class="profile-img" *ngIf="visible_key">
+      <img [src]="user_details.avatar_url != ''?  user_details.avatar_url : 'assets/imgs/no-image.png'">
+    </div>
+  </div>
+  <div class="profile-view-body">
+    <ion-card>
+      <h3>Name</h3>
+      <ion-item>
+        {{user_details.first_name}} {{user_details.last_name}}
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <h3>Email</h3>
+      <ion-item>
+        {{user_details.email}}
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <h3>Contact Number</h3>
+      <ion-item>
+        {{user_details.username}}
+      </ion-item>
+    </ion-card>
+
+    <ion-card class="address-list">
+      <h3 (click)="openAddModal()">Address  <i  class="fa fa-plus-square" aria-hidden="true"></i></h3>
+
+      <ion-list *ngFor="let address of address_list | slice:1:100;">
+          <ion-item >
+              <ion-label>
+                  <ion-row>
+                  <ion-col col-10>
+                    <div class="typetitle">{{address.label}}</div>
+                    <span>{{address.shipping_first_name}}{{address.shipping_last_name}}</span>
+                    <br>
+                   <span>{{address.shipping_address_1}} {{address.shipping_address_2}}
+                      {{address.shipping_city}} </span> 
+                      <br>
+                      <span>{{address.shipping_state}} {{address.shipping_postcode}} {{address.shipping_country}} </span>
+                            
+                  </ion-col>
+                  <ion-col col-2>
+                   <!-- <span (click)="openEditModal(address)">Edit</span>  -->
+                   <button ion-button round (click)="openEditModal(address)">Edit</button> 
+                    </ion-col>
+                   </ion-row>
+          
+              </ion-label>
+           
+            </ion-item>
+       
+      </ion-list>
+    </ion-card>
+
+  </div>
+</ion-content>
+<ion-footer>
+  <page-footer></page-footer>
+</ion-footer>

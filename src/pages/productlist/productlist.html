@@ -1,0 +1,161 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div class="bar bar-subheader">
+        <div class="top-search">
+            <ion-row>
+                <ion-col col-8>
+                    <ion-searchbar [(ngModel)]="searchKeywords"></ion-searchbar>
+                </ion-col>
+                <ion-col col-2> 
+                    <button (click)="searchProduct(searchKeywords)" ion-button>
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </ion-col>
+                <ion-col col-2 >
+                        <button (click)="filterProductModal()" ion-button>
+                        <ion-icon ios="ios-funnel" md="md-funnel"></ion-icon>
+                        </button>
+                </ion-col>
+                <!-- <ion-col col-2>
+                     <ion-list>
+                        <ion-item>
+                            <ion-label>
+                                Filter
+                            </ion-label>
+                            <ion-select [(ngModel)]="gaming">
+                                <ion-option value="nes">NES</ion-option>
+                                <ion-option value="n64">Nintendo64</ion-option>
+                                <ion-option value="ps">PlayStation</ion-option>
+                                <ion-option value="genesis">Sega Genesis</ion-option>
+                                <ion-option value="saturn">Sega Saturn</ion-option>
+                                <ion-option value="snes">SNES</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-list>
+                </ion-col> -->
+
+
+            </ion-row>
+        </div>
+        <ion-slides slidesPerView="3.2">
+            <!-- <ion-slide>
+                <span class="active">Best Match</span>
+            </ion-slide> -->
+            <ion-slide (click)="getSortedProductList('desc','id')">
+                <span>Newest</span>
+            </ion-slide>
+            <ion-slide (click)="getSortedProductList('desc','price')">
+                <span>Price Low-High</span>
+            </ion-slide>
+            <ion-slide (click)="getSortedProductList('asc','price')">
+                <span>Price High-Low</span>
+            </ion-slide>
+        </ion-slides>
+    </div>
+
+    <div class="product-list" *ngIf="visible_key">
+        <ion-grid>
+            <ion-row *ngIf="product_list.length > 0 && FilterResult==0">
+                <ion-col col-6 class="product-price" *ngFor="let product of product_list let i=index">
+                    <ion-card (click)="gotoProDetails(product.id)">
+                        <!-- <img class="cart-icon-image" src="assets/imgs/icon-cart.png" /> -->
+                        <!-- <img class="product-image" src="assets/imgs/img1.png" /> -->
+                        <img class="product-image" [src]="product.images[0].src" />
+                        <ion-card-content>
+                            <ion-card-title>
+                                {{product.name}}
+                            </ion-card-title>
+                            <hr>
+                            <ion-row>
+                                <ion-col col-12>
+                                    <!-- <span class="price">
+                                        <i class="fa fa-rupee"></i>{{product.price}}
+                                       
+                                    </span> -->
+                                     <span class="regular-price" *ngIf="product.product_regular_price > product.product_sell_price"><i class="fa fa-inr" aria-hidden="true"></i> {{product.product_regular_price}}</span>
+            <span> <i class="fa fa-inr" aria-hidden="true"></i> {{product.product_sell_price}}</span>
+                                </ion-col>
+                                <!-- <ion-col col-6 style="text-align: right;"> 
+                                    
+                                    <span class="rating active" *ngFor="let rat of rating; let i = index"
+                                    [ngClass]="[i <= product.average_rating - 1 ? 'active' : '']" style="margin-right: 2px;">
+                                        <ion-icon name="star"></ion-icon>
+                                    </span></ion-col> -->
+                            </ion-row>
+                            
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="product_list.length > 0 && FilterResult==1">
+                    <ion-col col-6 class="product-price" *ngFor="let product of product_list let i=index">
+                        <ion-card (click)="gotoProDetails(product.product_id)">
+                            <img class="product-image" [src]="product.product_img" />
+                            <ion-card-content>
+                                <ion-card-title>
+                                    {{product.product_name}}
+                                </ion-card-title>
+                                <hr>
+                                <ion-row>
+                                    <ion-col col-12>
+                                        <!-- <span class="price">
+                                            <i class="fa fa-rupee"></i>{{product.sale_price}}
+                                           
+                                        </span> -->
+                                        <span class="regular-price" *ngIf="product.price > product.sale_price"><i class="fa fa-inr" aria-hidden="true"></i> {{product.price}}</span>
+                                        <span> <i class="fa fa-inr" aria-hidden="true"></i> {{product.sale_price}}</span>
+                                    </ion-col>
+                                    <!-- <ion-col col-6 style="text-align: right;"> 
+                                        
+                                        <span class="rating active" *ngFor="let rat of rating; let i = index"
+                                        [ngClass]="[i <= product.average_rating - 1 ? 'active' : '']" style="margin-right: 2px;">
+                                            <ion-icon name="star"></ion-icon>
+                                        </span></ion-col> -->
+                                </ion-row>
+                                
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            
+        </ion-grid>
+        <p *ngIf="product_list.length==0" class="error-msg"> No records Found!!!</p>
+    </div>
+
+</ion-content>
+
+<ion-footer>
+    <!-- <ion-toolbar text-center="">
+        <ion-buttons>
+            <button ion-button>
+                <ion-icon name="home"></ion-icon>
+            </button>
+            <button ion-button>
+                <ion-icon ios="ios-search" md="md-search"></ion-icon>
+            </button>
+            <button ion-button>
+                <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+            </button>
+            <button ion-button>
+                <ion-icon ios="ios-person" md="md-person"></ion-icon>
+            </button>
+            <button ion-button>
+                <ion-icon ios="ios-reorder" md="md-reorder"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar> -->
+    <page-footer></page-footer>
+</ion-footer>

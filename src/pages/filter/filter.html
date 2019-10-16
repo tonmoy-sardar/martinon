@@ -1,0 +1,28 @@
+<!--
+  Generated template for the FilterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding>
+  
+    <ion-list *ngFor="let attributes of allAttributeList let i=index">
+        <h3>{{attributes.name}} </h3>
+      
+        <ion-list radio-group>
+            <ion-item *ngFor="let list of attributes.list let i=index">
+                <ion-label>
+                    <ion-col col-6>
+                        <div class="typetitle">{{list.name}}</div>
+                    </ion-col>
+                </ion-label>
+                <ion-checkbox color="dark" (ionChange)="getCheckboxValues($event,list,attributes)"></ion-checkbox>
+
+            </ion-item>
+        </ion-list>
+
+    </ion-list>
+    <button *ngIf="listAttributesValue.length >0" ion-button round (click)="getFilterProduct(sendList)">Apply</button>
+    <button *ngIf="listAttributesValue.length >0" ion-button round color="danger" (click)="closeModal()">Close</button>
+</ion-content>

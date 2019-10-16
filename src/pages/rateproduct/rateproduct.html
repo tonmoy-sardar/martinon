@@ -1,0 +1,31 @@
+<!--
+  Generated template for the RateproductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>rateproduct</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <rating [(ngModel)]="rate" readOnly="false" max="5" emptyStarIconName="star-outline"
+    halfStarIconName="star-half" starIconName="star" nullable="false"
+    (ngModelChange)="onModelChange($event)">
+</rating>
+<div class="review-textarea">
+    <form [formGroup]="reviewForm"  novalidate >
+ 
+  <ion-textarea  formControlName="review" name="review" [ngClass]="displayFieldCss('review')"></ion-textarea>
+  <br>      
+  <span class="error-msg" *ngIf="isFieldValid('review')">Please write your feedback.</span>
+  <br>
+  <button ion-button class="review-submit" (click)="addReview()">Submit</button>
+</form>
+</div>  
+</ion-content>
